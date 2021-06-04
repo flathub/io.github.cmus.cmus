@@ -23,6 +23,8 @@
     <url type="homepage">https://cmus.github.io/</url>
 
     <releases>
+        <release version="2.9.1" date="2021-01-23"/>
+        <release version="2.9.0" date="2021-01-17"/>
         <release version="2.8.0" date="2019-01-29"/>
     </releases>
 
