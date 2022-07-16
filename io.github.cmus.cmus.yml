@@ -43,15 +43,8 @@ modules:
       - /bin
     sources:
       - type: archive
-        url: https://github.com/TechSmith/mp4v2/archive/Release-ThirdParty-MP4v2-4.1.3.tar.gz
-        sha512: 6cb63997ae7a162f91f11872f5a42e10305cf57fe52989650c8817daab94f079518668f408719d2df4e64047987679e3d82a5dd202ea69cc9fe4b7b5c84fbe11
-      - type: patch
-        path: libmp4v2-gcc7.patch
-      - type: patch
-        path: libmp4v2-gcc10.patch
-      - type: shell
-        commands:
-          - cp -p /usr/share/automake-*/config.{sub,guess} autoaux
+        url: https://github.com/enzo1982/mp4v2/releases/download/v2.1.1/mp4v2-2.1.1.tar.bz2
+        sha512: 887e31baf6db191420c88dc7ee619738110457352430545b36a2c80ba603eaa24f701a45796a66b0502ef3a58bcf58f5b96e3e6d160303b402f0b4fb1bdefd98
 
   - name: libmodplug
     cleanup:
@@ -98,6 +91,7 @@ modules:
   - name: libcdio
     cleanup:
       - /share/man
+      - /share/info
       - /include
       - /bin
     sources:
@@ -118,6 +112,7 @@ modules:
   - name: cmus
     cleanup:
       - /share/man
+      - /share/doc
     build-options:
       env: # Explicitly specify features so they don't just get disabled silently
         - CONFIG_AAC=y
@@ -141,8 +136,8 @@ modules:
       - install -Dm644 io.github.cmus.cmus.metainfo.xml /app/share/appdata/${FLATPAK_ID}.appdata.xml
     sources:
       - type: archive
-        url: https://github.com/cmus/cmus/archive/v2.9.1.tar.gz
-        sha512: b417e58a68c54e97db92b8760a49a3071e81f1594f2144911eed3ccceb68499dedf0699ae313babcb822d71b37add8880dfb2018686cb572e89f8627446d5e05
+        url: https://github.com/cmus/cmus/archive/refs/tags/v2.10.0.tar.gz
+        sha512: c055dc974a88f32c7f19fb2e4260ede37fbddc3f23707a98e7f669032c1b4fd9a1032eb5c808cf5ee635617d3abf176e78d1e8596cbe669bbad95cd5c50dde7c
       - type: patch
         path: configure.patch
       - type: file
