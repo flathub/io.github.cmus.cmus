@@ -1,6 +1,6 @@
 app-id: io.github.cmus.cmus
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 command: cmus
 finish-args:
@@ -14,27 +14,17 @@ finish-args:
 
 modules:
   - name: faad2
+    buildsystem: cmake
     cleanup:
       - /share/man
       - /include
       - /bin
     sources:
       - type: archive
-        url: https://github.com/knik0/faad2/archive/refs/tags/2.10.1.tar.gz
-        sha512: 8df69278350c68dd770c4bc482e42bc95eb04cd784eeea3f3fc58d615833c8b07dc3c72029bb7e5bfed612b7c1b8daefc9cb57be9789befb587120ef115e55b3
+        url: https://github.com/knik0/faad2/archive/refs/tags/2.11.1.tar.gz
+        sha512: b8f17680610b2f47344ea52b54412a02810a85eaf9d4c91b97ca09b2c6415c62d4af1b0771bfcacb9dfee400ed34504c0bd3c28369921c0392b3809e7de46ec5
 
-  - name: libmad
-    cleanup:
-      - /include
-    sources:
-      - type: archive
-        url: ftp://ftp.mars.org/pub/mpeg/libmad-0.15.1b.tar.gz
-        sha512: 2cad30347fb310dc605c46bacd9da117f447a5cabedd8fefdb24ab5de641429e5ec5ce8af7aefa6a75a3f545d3adfa255e3fa0a2d50971f76bc0c4fc0400cc45
-      - type: patch
-        path: libmad-optimize.diff
-      - type: shell
-        commands:
-          - cp -p /usr/share/automake-*/config.{sub,guess} .
+  - shared-modules/libmad/libmad.json
 
   - name: libmp4v2
     cleanup:
@@ -43,8 +33,8 @@ modules:
       - /bin
     sources:
       - type: archive
-        url: https://github.com/enzo1982/mp4v2/releases/download/v2.1.1/mp4v2-2.1.1.tar.bz2
-        sha512: 887e31baf6db191420c88dc7ee619738110457352430545b36a2c80ba603eaa24f701a45796a66b0502ef3a58bcf58f5b96e3e6d160303b402f0b4fb1bdefd98
+        url: https://github.com/enzo1982/mp4v2/releases/download/v2.1.3/mp4v2-2.1.3.tar.bz2
+        sha512: 89bca9c76cf468a932a09d66bc5409266acde51184bf1262c5bc9a524ee5c9a3e073fd0d37450580284e12d9d46d1fd5db0c4ce647c365cc5106fb39ee3d59f6
 
   - name: libmodplug
     cleanup:
@@ -140,6 +130,8 @@ modules:
         sha512: c055dc974a88f32c7f19fb2e4260ede37fbddc3f23707a98e7f669032c1b4fd9a1032eb5c808cf5ee635617d3abf176e78d1e8596cbe669bbad95cd5c50dde7c
       - type: patch
         path: configure.patch
+      - type: patch
+        path: ffmpeg6.patch
       - type: file
         path: cmus.desktop
       - type: file
