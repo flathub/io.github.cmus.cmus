@@ -1,0 +1,26 @@
+From 32e0cde0a3c8d082d71342577e33c380219d25a6 Mon Sep 17 00:00:00 2001
+From: Gavin Troy <gavin@cantlogout.com>
+Date: Tue, 7 Oct 2025 14:41:09 +0100
+Subject: [PATCH] Fix libmp4v2 check
+
+The modern gcc default is -std=gnu23 which the mp4v2 headers are not
+compatible with. This was only a problem for the check, since for the
+actual compile we add EXTRA_CFLAGS that set -std=gnu11 or -std=c11
+anyway.
+---
+ configure | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure b/configure
+index bcbe857b..6c395a90 100755
+--- a/configure
++++ b/configure
+@@ -452,7 +452,7 @@ check_mp4()
+ {
+ 	pkg_config MP4 "mp4v2 faad2" "" "-lmp4v2 -lfaad -lm" || return $?
+ 	USE_MPEG4IP=0
+-	if ! check_header mp4v2/mp4v2.h $MP4_CFLAGS
++	if ! check_header mp4v2/mp4v2.h -std=c11 $MP4_CFLAGS
+ 	then
+ 		# couldn't find the v2 header, try falling back to mp4.h
+ 		USE_MPEG4IP=1
