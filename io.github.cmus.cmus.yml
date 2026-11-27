@@ -1,6 +1,6 @@
 app-id: io.github.cmus.cmus
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 command: cmus
 finish-args:
@@ -21,8 +21,8 @@ modules:
       - /bin
     sources:
       - type: archive
-        url: https://github.com/knik0/faad2/archive/refs/tags/2.11.2.tar.gz
-        sha512: fd140c0f4e7946e95a49a8652e26f33b138fc3375da34d5e3a55cdde8a74be429eb6fe0180bd434841022cee3c2ec65fe40dda7440fe0dd2761622174f992490
+        url: https://github.com/knik0/faad2/archive/refs/tags/2.11.4.tar.gz
+        sha512: 19f66bf811b3debf2230debba2f9978c06172444be5fbd8046112e4e01736a81ef302bde66221742d132fd06e4c8167bc79f76a1434a6e7ff16fcd13cf5ef9e7
 
   - shared-modules/libmad/libmad.json
 
@@ -130,10 +130,8 @@ modules:
       - install -Dm644 io.github.cmus.cmus.metainfo.xml /app/share/appdata/${FLATPAK_ID}.appdata.xml
     sources:
       - type: archive
-        url: https://github.com/cmus/cmus/archive/refs/tags/v2.12.0.tar.gz
-        sha512: 95dc35e76bb220476986470977d4affc3b7d81a4d057057d62d3f8015abb3c24ec371ece8d3d77fd0e59062c9f3b1bd73dd438ace1eadf3ce39aa86b209a7de5
-      - type: patch
-        path: fix-libmp4v2-check.patch
+        url: https://github.com/cmus/cmus/archive/refs/tags/v2.13.0.tar.gz
+        sha512: c749f5330a8dc7911da1962e3a778c3937de34d4fb5358e9701a748efff5e007f0eea39f1da0b98d1e88f725dbfd7441c794e7c3eb7102933a36700945171a3e
       - type: file
         path: cmus.desktop
       - type: file
